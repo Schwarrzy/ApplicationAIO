@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["python3", "cairo", "pkg-config", "gobject-introspection"]
+nixPkgs = ["python3", "cairo", "pango", "gdk-pixbuf", "glib", "pkg-config", "gobject-introspection"]
 
 [phases.install]
 dependsOn = ["setup"]
