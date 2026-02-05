@@ -2,7 +2,8 @@
 nixPkgs = ["python311", "cairo", "pkg-config", "gobject-introspection", "gcc"]
 
 [phases.install]
-cmds = ["pip install --upgrade pip", "pip install -r requirements.txt"]
+# On utilise 'python3 -m pip' au lieu de 'pip' pour être sûr de trouver l'exécutable
+cmds = ["python3 -m pip install --upgrade pip", "python3 -m pip install -r requirements.txt"]
 
 [start]
-cmd = "python bot.py"
+cmd = "python3 bot.py"
