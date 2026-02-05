@@ -1,11 +1,10 @@
 [phases.setup]
-# On installe Python ET xhtml2pdf via le système (pour avoir les dépendances graphiques valides)
-nixPkgs = ["python311", "python311Packages.pip", "python311Packages.xhtml2pdf", "cairo", "pkg-config", "gcc"]
+# Ajout explicite de reportlab pour corriger l'erreur du log 15:09
+nixPkgs = ["python311", "python311Packages.pip", "python311Packages.xhtml2pdf", "python311Packages.reportlab", "cairo", "pkg-config", "gcc"]
 
 [phases.install]
-# CRUCIAL: --system-site-packages permet au venv de voir le xhtml2pdf installé par Nix juste au-dessus
+# On garde cette méthode car elle fonctionnait pour détecter xhtml2pdf
 cmds = ["python3 -m venv /opt/venv --system-site-packages && . /opt/venv/bin/activate && pip install -r requirements.txt"]
 
 [start]
-# On lance le bot via le venv qui contient Discord ET voit le PDF système
 cmd = ". /opt/venv/bin/activate && python bot.py"
