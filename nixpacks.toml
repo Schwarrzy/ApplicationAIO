@@ -1,11 +1,9 @@
 [phases.setup]
 nixPkgs = [
-    "python311", 
+    "python311",
     "python311Packages.pip",
     "cairo",
-    "cairo.dev",
     "pango",
-    "pango.dev",
     "gdk-pixbuf",
     "libffi",
     "pkg-config",
@@ -13,7 +11,10 @@ nixPkgs = [
 ]
 
 [phases.install]
-cmds = ["pip install -r requirements.txt --break-system-packages"]
+cmds = [
+    "export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/root/.nix-profile/lib/pkgconfig",
+    "pip install -r requirements.txt --break-system-packages"
+]
 
 [start]
 cmd = "python bot.py"
