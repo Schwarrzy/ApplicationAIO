@@ -1,10 +1,11 @@
 [phases.setup]
-# On garde uniquement les outils système (pas de paquets python ici à part pip)
-nixPkgs = ["python311", "python311Packages.pip", "cairo", "pkg-config", "gobject-introspection", "gcc", "zlib"]
+# On installe python3, pip, ET xhtml2pdf version système (pré-compilé)
+nixPkgs = ["python311", "python311Packages.pip", "python311Packages.xhtml2pdf", "cairo", "pkg-config", "gcc"]
 
 [phases.install]
-# C'est la ligne MAGIQUE : On dit à Pip où trouver Cairo, puis on installe TOUT via Pip
-cmds = ["export PKG_CONFIG_PATH=$(find /nix/store -name pkgconfig -type d | paste -sd ':' -) && pip install -r requirements.txt --break-system-packages"]
+# On installe le reste (discord, openai) par dessus
+cmds = ["python3 -m pip install -r requirements.txt --break-system-packages"]
 
 [start]
+# On lance le bot avec le python du système qui voit TOUS les paquets
 cmd = "python3 bot.py"
