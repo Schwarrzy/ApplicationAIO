@@ -1,9 +1,12 @@
 [phases.setup]
-nixPkgs = ["python311", "cairo", "pkg-config", "gobject-introspection", "gcc"]
+nixPkgs = ["python311", "python311Packages.pip", "python311Packages.setuptools", "cairo", "pkg-config", "gobject-introspection", "gcc"]
 
 [phases.install]
-# On utilise 'python3 -m pip' au lieu de 'pip' pour être sûr de trouver l'exécutable
-cmds = ["python3 -m pip install --upgrade pip", "python3 -m pip install -r requirements.txt"]
+# On s'assure que pip est là et on installe les dépendances
+cmds = [
+    "python3 -m pip install --upgrade pip",
+    "python3 -m pip install -r requirements.txt"
+]
 
 [start]
 cmd = "python3 bot.py"
