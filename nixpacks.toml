@@ -2,7 +2,7 @@
 nixPkgs = ["python311", "python311Packages.pip", "cairo", "pkg-config", "gobject-introspection", "gcc"]
 
 [phases.install]
-cmds = ["python3 -m pip install --upgrade pip --break-system-packages && python3 -m pip install -r requirements.txt --break-system-packages"]
+cmds = ["/root/.nix-profile/bin/python3 -m pip install --upgrade pip --break-system-packages && /root/.nix-profile/bin/python3 -m pip install -r requirements.txt --break-system-packages"]
 
 [start]
-cmd = "python3 bot.py"
+cmd = "/root/.nix-profile/bin/python3 bot.py"
