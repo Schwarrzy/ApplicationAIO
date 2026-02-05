@@ -1,6 +1,8 @@
 [phases.setup]
-nixPkgs = ["python3", "cairo", "pango", "gdk-pixbuf", "glib", "pkg-config", "gobject-introspection"]
+nixPkgs = ["python311", "cairo", "pkg-config", "gobject-introspection", "gcc"]
 
 [phases.install]
-dependsOn = ["setup"]
-cmds = ["pip install -r requirements.txt"]
+cmds = ["python3 -m venv /opt/venv && /opt/venv/bin/pip install --upgrade pip && /opt/venv/bin/pip install -r requirements.txt"]
+
+[start]
+cmd = "/opt/venv/bin/python bot.py"
