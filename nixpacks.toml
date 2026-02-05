@@ -1,11 +1,15 @@
 [phases.setup]
-# On installe python3, pip, ET xhtml2pdf version système (pré-compilé)
-nixPkgs = ["python311", "python311Packages.pip", "python311Packages.xhtml2pdf", "cairo", "pkg-config", "gcc"]
+nixPkgs = [
+    "python311",
+    "python311Packages.pip",
+    "python311Packages.discordpy",
+    "python311Packages.openai",
+    "python311Packages.python-dotenv",
+    "python311Packages.xhtml2pdf"
+]
 
 [phases.install]
-# On installe le reste (discord, openai) par dessus
-cmds = ["python3 -m pip install -r requirements.txt --break-system-packages"]
+cmds = ["echo 'Installation via Nix terminée'"]
 
 [start]
-# On lance le bot avec le python du système qui voit TOUS les paquets
 cmd = "python3 bot.py"
