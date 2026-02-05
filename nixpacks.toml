@@ -1,10 +1,17 @@
 [phases.setup]
-# Ajout explicite de reportlab pour corriger l'erreur du log 15:09
-nixPkgs = ["python311", "python311Packages.pip", "python311Packages.xhtml2pdf", "python311Packages.reportlab", "cairo", "pkg-config", "gcc"]
+# On ajoute 'python311Packages.pillow' pour corriger l'erreur "No module named PIL"
+nixPkgs = [
+    "python311",
+    "python311Packages.pip",
+    "python311Packages.discordpy",
+    "python311Packages.openai",
+    "python311Packages.python-dotenv",
+    "python311Packages.xhtml2pdf",
+    "python311Packages.pillow"
+]
 
 [phases.install]
-# On garde cette méthode car elle fonctionnait pour détecter xhtml2pdf
-cmds = ["python3 -m venv /opt/venv --system-site-packages && . /opt/venv/bin/activate && pip install -r requirements.txt"]
+cmds = ["echo 'Installation via Nix terminée'"]
 
 [start]
-cmd = ". /opt/venv/bin/activate && python bot.py"
+cmd = "python3 bot.py"
