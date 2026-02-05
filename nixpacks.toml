@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["python311", "python311Packages.pip", "cairo", "pkg-config", "gobject-introspection", "gcc"]
+nixPkgs = ["python311", "python311Packages.pip", "python311Packages.pycairo", "cairo", "pkg-config", "gobject-introspection", "gcc"]
 
 [phases.install]
-cmds = ["pip install -r requirements.txt --break-system-packages"]
+cmds = ["export PKG_CONFIG_PATH=$(find /nix/store -name pkgconfig -type d | paste -sd ':' -) && pip install -r requirements.txt --break-system-packages"]
 
 [start]
 cmd = "python3 bot.py"
