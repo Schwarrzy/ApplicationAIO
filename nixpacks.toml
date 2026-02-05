@@ -1,17 +1,8 @@
 [phases.setup]
-# On ajoute 'python311Packages.pillow' pour corriger l'erreur "No module named PIL"
-nixPkgs = [
-    "python311",
-    "python311Packages.pip",
-    "python311Packages.discordpy",
-    "python311Packages.openai",
-    "python311Packages.python-dotenv",
-    "python311Packages.xhtml2pdf",
-    "python311Packages.pillow"
-]
+nixPkgs = ["python311", "python311Packages.pip", "cairo", "pango", "gdk-pixbuf", "libffi", "pkg-config", "gcc"]
 
 [phases.install]
-cmds = ["echo 'Installation via Nix terminée'"]
+cmds = ["pip install -r requirements.txt --break-system-packages"]
 
 [start]
-cmd = "python3 bot.py"
+cmd = "python bot.py"
