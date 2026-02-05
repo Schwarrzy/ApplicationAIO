@@ -1,6 +1,5 @@
 discord.py
 openai
 python-dotenv
-Pillow
 xhtml2pdf
 reportlab
